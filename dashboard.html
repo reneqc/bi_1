@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dashboard interactivo de estadísticas simuladas de la Liga Pro Ecuador 2026.">
+  <title>Dashboard Liga Pro 2026 | BI Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark site-navbar sticky-top" aria-label="Navegación principal">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html"><span class="brand-mark">BI</span> Lab</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir navegación"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="index.html">Fundamentos de BI</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="dashboard.html">Dashboard Liga Pro</a></li>
+          <li class="nav-item"><a class="btn btn-sm btn-success ms-lg-2" href="index.html#quiz">Ir al cuestionario <span aria-hidden="true">→</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="dashboard-page">
+    <section class="dashboard-heading">
+      <div class="container">
+        <div class="d-flex flex-column flex-lg-row align-items-lg-end justify-content-between gap-4">
+          <div>
+            <div class="dashboard-kicker"><span class="live-status"></span> TEMPORADA 2026 · DATOS SIMULADOS</div>
+            <h1>Centro de análisis <span>Liga Pro</span></h1>
+            <p>Una mirada a los goles, resultados y rendimiento del campeonato ecuatoriano.</p>
+          </div>
+          <div class="filter-panel">
+            <label for="round-filter" class="form-label">Analizar hasta la jornada</label>
+            <select id="round-filter" class="form-select" aria-label="Filtrar estadísticas hasta una jornada"></select>
+            <small id="filter-caption">Mostrando toda la temporada</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container dashboard-content" aria-label="Resumen estadístico">
+      <div class="row g-3 kpi-row">
+        <div class="col-6 col-xl-3"><article class="kpi-card h-100"><div class="kpi-top"><span class="kpi-icon kpi-blue">⚽</span><span id="goals-change" class="kpi-change">—</span></div><div class="kpi-label">Goles en el torneo</div><div id="total-goals" class="kpi-value">—</div><div class="kpi-note">Goles registrados</div></article></div>
+        <div class="col-6 col-xl-3"><article class="kpi-card h-100"><div class="kpi-top"><span class="kpi-icon kpi-green">◎</span><span id="average-change" class="kpi-change">—</span></div><div class="kpi-label">Goles por partido</div><div id="average-goals" class="kpi-value">—</div><div class="kpi-note">Promedio del torneo</div></article></div>
+        <div class="col-6 col-xl-3"><article class="kpi-card h-100"><div class="kpi-top"><span class="kpi-icon kpi-orange">♛</span><span class="kpi-change neutral">LÍDER</span></div><div class="kpi-label">Equipo líder</div><div id="leader-team" class="kpi-value kpi-team">—</div><div id="leader-points" class="kpi-note">—</div></article></div>
+        <div class="col-6 col-xl-3"><article class="kpi-card h-100"><div class="kpi-top"><span class="kpi-icon kpi-purple">▦</span><span id="attendance-change" class="kpi-change">—</span></div><div class="kpi-label">Asistencia acumulada</div><div id="total-attendance" class="kpi-value">—</div><div class="kpi-note">Aficionados en estadio</div></article></div>
+      </div>
+
+      <div class="row g-3 chart-row">
+        <div class="col-lg-8"><article class="chart-card h-100"><div class="chart-heading"><div><h2>Goles por equipo</h2><p>Los 8 equipos con más anotaciones</p></div><span id="goals-period" class="chart-period">TEMPORADA</span></div><div class="chart-container chart-tall"><canvas id="team-goals-chart" role="img" aria-label="Gráfico de barras de goles anotados por equipo"></canvas></div></article></div>
+        <div class="col-lg-4"><article class="chart-card h-100"><div class="chart-heading"><div><h2>Resultados</h2><p>Distribución de partidos</p></div><span id="results-period" class="chart-period">TEMPORADA</span></div><div class="chart-container chart-donut"><canvas id="results-chart" role="img" aria-label="Gráfico de dona de resultados de partidos"></canvas></div><div class="chart-legend"><span><i class="legend-dot dot-blue"></i>Local</span><span><i class="legend-dot dot-green"></i>Visitante</span><span><i class="legend-dot dot-orange"></i>Empate</span></div></article></div>
+      </div>
+
+      <div class="row g-3 chart-row">
+        <div class="col-lg-7"><article class="chart-card h-100"><div class="chart-heading"><div><h2>Goles por jornada</h2><p>Evolución de anotaciones en el campeonato</p></div><span id="round-period" class="chart-period">J1 — J18</span></div><div class="chart-container chart-line"><canvas id="round-goals-chart" role="img" aria-label="Gráfico de línea de goles por jornada"></canvas></div></article></div>
+        <div class="col-lg-5"><article class="chart-card h-100"><div class="chart-heading"><div><h2>Perfil de rendimiento</h2><p>Comparativa de los 3 primeros</p></div></div><div class="chart-container chart-radar"><canvas id="team-profile-chart" role="img" aria-label="Gráfico radar de estadísticas de equipos"></canvas></div><div class="radar-note">Índice normalizado sobre 100 · promedio por equipo</div></article></div>
+      </div>
+
+      <div class="row g-3 chart-row bottom-row">
+        <div class="col-12"><article class="chart-card table-card"><div class="chart-heading"><div><h2>Tabla de posiciones</h2><p>Los 6 equipos mejor ubicados</p></div><span class="chart-period">CLASIFICACIÓN</span></div><div class="table-responsive"><table class="table standings-table align-middle mb-0"><thead><tr><th scope="col">#</th><th scope="col">Equipo</th><th scope="col">PJ</th><th scope="col">G</th><th scope="col">E</th><th scope="col">P</th><th scope="col">GF</th><th scope="col">GC</th><th scope="col">DG</th><th scope="col">PTS</th></tr></thead><tbody id="standings-body"></tbody></table></div></article></div>
+      </div>
+      <p class="data-disclaimer">Los datos de esta visualización son ficticios y se utilizan únicamente con fines educativos.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2"><a class="footer-brand" href="index.html">BI Lab</a><p class="mb-0">Aprendizaje práctico para decisiones inteligentes · Proyecto educativo</p><a href="index.html">← Volver a fundamentos</a></div></footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

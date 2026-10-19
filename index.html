@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Aprende los fundamentos de Business Intelligence y practica con un dashboard interactivo de la Liga Pro 2026.">
+  <title>Fundamentos de BI | BI Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark site-navbar sticky-top" aria-label="Navegación principal">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html"><span class="brand-mark">BI</span> Lab</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir navegación"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="#fundamentos">Fundamentos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#etl">Proceso ETL</a></li>
+          <li class="nav-item"><a class="nav-link" href="#aplicaciones">Aplicaciones</a></li>
+          <li class="nav-item"><a class="nav-link" href="#quiz">Cuestionario</a></li>
+          <li class="nav-item"><a class="btn btn-sm btn-success ms-lg-2" href="dashboard.html">Explorar dashboard <span aria-hidden="true">→</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero-section">
+      <div class="container py-5">
+        <div class="row align-items-center gy-5">
+          <div class="col-lg-7">
+            <span class="eyebrow"><span class="eyebrow-dot"></span> APRENDE · ANALIZA · DECIDE</span>
+            <h1 class="display-3 fw-bold mt-3">Los datos cuentan.<br><span class="text-gradient">Aprende a escucharlos.</span></h1>
+            <p class="lead hero-copy mt-4">Descubre cómo Business Intelligence transforma datos dispersos en decisiones más claras. Aprende los fundamentos y ponlos en práctica con un dashboard interactivo de la Liga Pro.</p>
+            <div class="d-flex flex-wrap gap-3 mt-4">
+              <a href="#fundamentos" class="btn btn-primary btn-lg">Empezar a aprender <span aria-hidden="true">↓</span></a>
+              <a href="dashboard.html" class="btn btn-outline-light btn-lg">Ver dashboard</a>
+            </div>
+            <div class="hero-note mt-4"><span aria-hidden="true">✦</span> Conceptos prácticos, explicados sin complicaciones</div>
+          </div>
+          <div class="col-lg-5">
+            <div class="hero-visual" aria-label="Resumen visual de indicadores de negocio">
+              <div class="visual-top"><span>RESUMEN DE NEGOCIO</span><span class="live-dot">● EN VIVO</span></div>
+              <div class="visual-kpi"><span>Ingresos este mes</span><strong>$84,290</strong><span class="positive">↗ 12.8% vs. mes anterior</span></div>
+              <div class="mini-chart" aria-hidden="true"><span style="height:34%"></span><span style="height:47%"></span><span style="height:40%"></span><span style="height:65%"></span><span style="height:55%"></span><span style="height:76%"></span><span style="height:68%"></span><span style="height:94%"></span><span style="height:81%"></span><span style="height:100%"></span></div>
+              <div class="visual-bottom"><span>ENE</span><span>FEB</span><span>MAR</span><span>ABR</span><span>MAY</span></div>
+              <div class="floating-insight"><span class="insight-icon">↗</span><span><b>Insight detectado</b><small>Ventas +18% esta semana</small></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="section-pad" id="fundamentos">
+      <div class="container">
+        <div class="section-heading text-center mx-auto">
+          <span class="section-kicker">01 · FUNDAMENTOS</span>
+          <h2 class="section-title">Decisiones basadas en datos</h2>
+          <p>Business Intelligence (BI) reúne procesos, herramientas y prácticas para convertir datos en información útil. En lugar de depender solo de la intuición, los equipos pueden decidir con evidencia compartida y oportuna.</p>
+        </div>
+        <div class="row g-4 mt-3">
+          <div class="col-md-4"><article class="decision-card h-100"><div class="card-icon icon-blue">⌖</div><h3>Estratégicas</h3><p>Marcan el rumbo a largo plazo. La dirección analiza mercados, rentabilidad y comportamiento de clientes para decidir dónde invertir o crecer.</p><span class="level-tag">LARGO PLAZO</span></article></div>
+          <div class="col-md-4"><article class="decision-card h-100"><div class="card-icon icon-green">▤</div><h3>Tácticas</h3><p>Convierten la estrategia en planes de mediano plazo. Un equipo puede comparar líneas de producto y ajustar campañas o presupuestos.</p><span class="level-tag">MEDIANO PLAZO</span></article></div>
+          <div class="col-md-4"><article class="decision-card h-100"><div class="card-icon icon-orange">⚙</div><h3>Operativas</h3><p>Guían el trabajo diario con información actualizada: reponer inventario, priorizar pedidos o resolver una incidencia a tiempo.</p><span class="level-tag">DÍA A DÍA</span></article></div>
+        </div>
+        <div class="benefits-strip mt-4">
+          <div><span class="benefit-symbol">✓</span><span><b>Menos incertidumbre</b><small>Decisiones sustentadas por evidencia</small></span></div>
+          <div><span class="benefit-symbol">↗</span><span><b>Tendencias tempranas</b><small>Detecta cambios antes de que escalen</small></span></div>
+          <div><span class="benefit-symbol">◎</span><span><b>KPIs relevantes</b><small>Mide el avance hacia tus objetivos</small></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad section-tint" id="etl">
+      <div class="container">
+        <div class="section-heading text-center mx-auto">
+          <span class="section-kicker">02 · DEL DATO A LA INFORMACIÓN</span>
+          <h2 class="section-title">El proceso ETL</h2>
+          <p>ETL conecta las fuentes de datos con el lugar donde se analizan. Sus tres fases ayudan a mantener información consistente y lista para usar.</p>
+        </div>
+        <div class="etl-flow mt-5">
+          <article class="etl-step"><div class="etl-number">01</div><div class="etl-symbol">⇩</div><h3>Extract <span>Extraer</span></h3><p>Se obtienen datos desde sus fuentes originales. <b>Ejemplo:</b> descargar los CSV de ventas y clientes de distintas sucursales.</p><div class="etl-source">CSV · ERP · APIs</div></article>
+          <div class="etl-connector" aria-hidden="true">→</div>
+          <article class="etl-step"><div class="etl-number">02</div><div class="etl-symbol">⟳</div><h3>Transform <span>Transformar</span></h3><p>Se corrigen formatos, duplicados y valores nulos para dar consistencia. <b>Ejemplo:</b> unificar monedas y estandarizar fechas.</p><div class="etl-source">LIMPIAR · VALIDAR</div></article>
+          <div class="etl-connector" aria-hidden="true">→</div>
+          <article class="etl-step"><div class="etl-number">03</div><div class="etl-symbol">▤</div><h3>Load <span>Cargar</span></h3><p>Los datos preparados se almacenan para consultarlos. <b>Ejemplo:</b> cargar las ventas depuradas a un data warehouse.</p><div class="etl-source">DATA WAREHOUSE</div></article>
+        </div>
+        <div class="etl-takeaway mt-4"><span aria-hidden="true">💡</span><p class="mb-0"><b>¿Por qué importa?</b> Una transformación consistente evita que reportes distintos cuenten historias diferentes.</p></div>
+      </div>
+    </section>
+
+    <section class="section-pad" id="aplicaciones">
+      <div class="container">
+        <div class="section-heading text-center mx-auto">
+          <span class="section-kicker">03 · BI EN ACCIÓN</span>
+          <h2 class="section-title">Datos que impulsan resultados</h2>
+          <p>El BI se adapta a diferentes industrias: cambia la pregunta, pero el objetivo es el mismo, tomar mejores decisiones.</p>
+        </div>
+        <div class="row g-4 mt-3">
+          <div class="col-md-4"><article class="application-card card h-100"><div class="application-art art-retail"><span>🛍️</span><small>RETAIL</small></div><div class="card-body"><h3 class="h5 fw-bold">El producto correcto, en el lugar correcto</h3><p class="text-secondary mb-3">Una cadena combina ventas e inventario para anticipar la demanda, reducir quiebres de stock y planificar promociones.</p><span class="use-case">VENTAS · INVENTARIO</span></div></article></div>
+          <div class="col-md-4"><article class="application-card card h-100"><div class="application-art art-sport"><span>⚽</span><small>DEPORTES</small></div><div class="card-body"><h3 class="h5 fw-bold">Rendimiento medible en la cancha</h3><p class="text-secondary mb-3">Un cuerpo técnico cruza posesión, tiros y goles por jornada para descubrir patrones y preparar cada partido.</p><span class="use-case">RENDIMIENTO · ESTRATEGIA</span></div></article></div>
+          <div class="col-md-4"><article class="application-card card h-100"><div class="application-art art-health"><span>🏥</span><small>SALUD</small></div><div class="card-body"><h3 class="h5 fw-bold">Mejor atención, mejores recursos</h3><p class="text-secondary mb-3">Un hospital monitorea tiempos de espera y ocupación para distribuir personal y atender picos de demanda.</p><span class="use-case">ATENCIÓN · OPERACIONES</span></div></article></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad quiz-section" id="quiz">
+      <div class="container">
+        <div class="section-heading text-center mx-auto">
+          <span class="section-kicker">04 · PON A PRUEBA LO APRENDIDO</span>
+          <h2 class="section-title">Reto BI: ¿cuánto sabes?</h2>
+          <p>Responde 8 preguntas, gana puntos y descubre qué conceptos ya dominas.</p>
+        </div>
+        <div class="quiz-shell mt-4">
+          <div class="quiz-meta"><span class="quiz-label"><span aria-hidden="true">✦</span> DESAFÍO BI</span><span id="quiz-score" class="quiz-score">0 puntos</span></div>
+          <div class="progress quiz-progress" role="progressbar" aria-label="Progreso del cuestionario" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="quiz-progress-bar" class="progress-bar"></div></div>
+          <div id="quiz-content" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2"><a class="footer-brand" href="index.html">BI Lab</a><p class="mb-0">Aprendizaje práctico para decisiones inteligentes · Proyecto educativo</p><a href="dashboard.html">Explora la Liga Pro 2026 →</a></div></footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/quiz.js"></script>
+</body>
+</html>
