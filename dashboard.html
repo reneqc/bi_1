@@ -22,6 +22,7 @@
           <li class="nav-item"><a class="nav-link" href="index.html">Fundamentos de BI</a></li>
           <li class="nav-item"><a class="nav-link active" aria-current="page" href="dashboard.html">Dashboard Liga Pro</a></li>
           <li class="nav-item"><a class="btn btn-sm btn-success ms-lg-2" href="index.html#quiz">Ir al cuestionario <span aria-hidden="true">→</span></a></li>
+          <li class="nav-item"><button class="btn btn-sm btn-outline-light theme-toggle ms-lg-2" id="theme-toggle" type="button" aria-label="Cambiar a tema oscuro" aria-pressed="false"><span class="theme-toggle-icon" aria-hidden="true">☾</span><span class="theme-toggle-label">Tema oscuro</span></button></li>
         </ul>
       </div>
     </div>
@@ -36,10 +37,13 @@
             <h1>Centro de análisis <span>Liga Pro</span></h1>
             <p>Una mirada a los goles, resultados y rendimiento del campeonato ecuatoriano.</p>
           </div>
-          <div class="filter-panel">
-            <label for="round-filter" class="form-label">Analizar hasta la jornada</label>
-            <select id="round-filter" class="form-select" aria-label="Filtrar estadísticas hasta una jornada"></select>
-            <small id="filter-caption">Mostrando toda la temporada</small>
+          <div class="dashboard-actions">
+            <div class="filter-panel">
+              <label for="round-filter" class="form-label">Analizar hasta la jornada</label>
+              <select id="round-filter" class="form-select" aria-label="Filtrar estadísticas hasta una jornada"></select>
+              <small id="filter-caption">Mostrando toda la temporada</small>
+            </div>
+            <button id="export-pdf" class="btn btn-light export-pdf" type="button"><span aria-hidden="true">⇩</span> Exportar PDF</button>
           </div>
         </div>
       </div>
@@ -66,6 +70,7 @@
       <div class="row g-3 chart-row bottom-row">
         <div class="col-12"><article class="chart-card table-card"><div class="chart-heading"><div><h2>Tabla de posiciones</h2><p>Los 6 equipos mejor ubicados</p></div><span class="chart-period">CLASIFICACIÓN</span></div><div class="table-responsive"><table class="table standings-table align-middle mb-0"><thead><tr><th scope="col">#</th><th scope="col">Equipo</th><th scope="col">PJ</th><th scope="col">G</th><th scope="col">E</th><th scope="col">P</th><th scope="col">GF</th><th scope="col">GC</th><th scope="col">DG</th><th scope="col">PTS</th></tr></thead><tbody id="standings-body"></tbody></table></div></article></div>
       </div>
+      <p class="print-report-date" id="print-report-date"></p>
       <p class="data-disclaimer">Los datos de esta visualización son ficticios y se utilizan únicamente con fines educativos.</p>
     </section>
   </main>
@@ -73,6 +78,7 @@
   <footer class="site-footer"><div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2"><a class="footer-brand" href="index.html">BI Lab</a><p class="mb-0">Aprendizaje práctico para decisiones inteligentes · Proyecto educativo</p><a href="index.html">← Volver a fundamentos</a></div></footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/theme.js"></script>
   <script src="js/data.js"></script>
   <script src="js/dashboard.js"></script>
 </body>

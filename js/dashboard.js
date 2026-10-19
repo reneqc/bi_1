@@ -3,6 +3,7 @@
 
   const data = window.LIGA_DATA;
   const chartInstances = {};
+  let preparingPrint = false;
   const colors = { blue: "#0d6efd", green: "#20c997", orange: "#fd7e14", purple: "#7950f2" };
   const formatNumber = (value) => new Intl.NumberFormat("es-EC").format(value);
   const roundedPercent = (current, previous) => previous ? Math.round(((current - previous) / previous) * 100) : 0;
@@ -142,6 +143,15 @@
   }
 
   function updateCharts(stats) {
+    const rootStyles = getComputedStyle(document.documentElement);
+    const isDark = document.documentElement.dataset.theme === "dark" && !preparingPrint;
+    const chartText = preparingPrint ? "#526177" : rootStyles.getPropertyValue("--chart-text").trim();
+    const chartGrid = preparingPrint ? "#dbe1e8" : rootStyles.getPropertyValue("--chart-grid").trim();
+    const tooltipBackground = isDark ? "#09111e" : "#17263e";
+    const themedPlugins = {
+      ...chartDefaults.plugins,
+      tooltip: { ...chartDefaults.plugins.tooltip, backgroundColor: tooltipBackground }
+    };
     renderOrUpdateChart("goals", "team-goals-chart", {
       type: "bar",
       data: {
@@ -152,10 +162,10 @@
         ...chartDefaults,
         indexAxis: "y",
         scales: {
-          x: { beginAtZero: true, grid: { color: "#edf1f5" }, ticks: { color: "#8390a2", precision: 0 }, border: { display: false } },
-          y: { grid: { display: false }, ticks: { color: "#526177", font: { family: "Inter", size: 11 } }, border: { display: false } }
+          x: { beginAtZero: true, grid: { color: chartGrid }, ticks: { color: chartText, precision: 0 }, border: { display: false } },
+          y: { grid: { display: false }, ticks: { color: chartText, font: { family: "Inter", size: 11 } }, border: { display: false } }
         },
-        plugins: { ...chartDefaults.plugins, tooltip: { ...chartDefaults.plugins.tooltip, callbacks: { label: (context) => ` ${context.parsed.x} goles` } } }
+        plugins: { ...themedPlugins, tooltip: { ...themedPlugins.tooltip, callbacks: { label: (context) => ` ${context.parsed.x} goles` } } }
       }
     });
 
@@ -168,7 +178,7 @@
       options: {
         ...chartDefaults,
         cutout: "69%",
-        plugins: { ...chartDefaults.plugins, tooltip: { ...chartDefaults.plugins.tooltip, callbacks: { label: (context) => ` ${context.label}: ${context.parsed} partidos` } } }
+        plugins: { ...themedPlugins, tooltip: { ...themedPlugins.tooltip, callbacks: { label: (context) => ` ${context.label}: ${context.parsed} partidos` } } }
       }
     });
 
@@ -181,10 +191,10 @@
       options: {
         ...chartDefaults,
         scales: {
-          x: { grid: { display: false }, ticks: { color: "#8390a2" }, border: { display: false } },
-          y: { beginAtZero: true, grid: { color: "#edf1f5" }, ticks: { color: "#8390a2", precision: 0 }, border: { display: false } }
+          x: { grid: { display: false }, ticks: { color: chartText }, border: { display: false } },
+          y: { beginAtZero: true, grid: { color: chartGrid }, ticks: { color: chartText, precision: 0 }, border: { display: false } }
         },
-        plugins: { ...chartDefaults.plugins, tooltip: { ...chartDefaults.plugins.tooltip, callbacks: { label: (context) => ` ${context.parsed.y} goles` } } }
+        plugins: { ...themedPlugins, tooltip: { ...themedPlugins.tooltip, callbacks: { label: (context) => ` ${context.parsed.y} goles` } } }
       }
     });
 
@@ -211,13 +221,13 @@
         scales: {
           r: {
             min: 0, max: 100,
-            angleLines: { color: "#e9eef4" },
-            grid: { color: "#e9eef4" },
-            pointLabels: { color: "#66758b", font: { family: "Inter", size: 10 } },
+            angleLines: { color: chartGrid },
+            grid: { color: chartGrid },
+            pointLabels: { color: chartText, font: { family: "Inter", size: 10 } },
             ticks: { display: false, stepSize: 25 }
           }
         },
-        plugins: { ...chartDefaults.plugins, legend: { display: true, position: "bottom", labels: { color: "#66758b", boxWidth: 9, boxHeight: 9, usePointStyle: true, padding: 14, font: { family: "Inter", size: 10 } } } }
+        plugins: { ...themedPlugins, legend: { display: true, position: "bottom", labels: { color: chartText, boxWidth: 9, boxHeight: 9, usePointStyle: true, padding: 14, font: { family: "Inter", size: 10 } } } }
       }
     });
   }
@@ -252,5 +262,19 @@
   }
 
   roundFilter.addEventListener("change", renderDashboard);
+  window.addEventListener("themechange", renderDashboard);
+  document.getElementById("export-pdf").addEventListener("click", () => {
+    const selectedRound = roundFilter.value === "all" ? data.rounds.length : Number(roundFilter.value);
+    const period = roundFilter.value === "all" ? "temporada completa" : `jornadas 1 a ${selectedRound}`;
+    document.getElementById("print-report-date").textContent =
+      `Reporte generado el ${new Intl.DateTimeFormat("es-EC", { dateStyle: "long" }).format(new Date())} · Filtro: ${period}.`;
+    preparingPrint = true;
+    renderDashboard();
+    window.addEventListener("afterprint", () => {
+      preparingPrint = false;
+      renderDashboard();
+    }, { once: true });
+    window.print();
+  });
   renderDashboard();
 })();
